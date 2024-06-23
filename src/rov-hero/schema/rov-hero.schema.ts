@@ -1,6 +1,7 @@
 import { Prop, Schema , SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types, Schema as MongooseSchema } from "mongoose";
 import { RovSkill } from "./rov-skill.schema";
+import { RovItem } from "src/rov-item/entities/rov-item.entity";
 
 export type RovHeroDocument = Document & RovHero;
 
@@ -24,8 +25,10 @@ export class RovHero
 
     @Prop({ type: [{ type: Types.ObjectId, ref: 'RovSkill' }], default: [] })
     skills: RovSkill[];
-    @Prop({ type: [{ type: MongooseSchema.Types.Mixed }] })
-    updateHistory: any[]; // Array of objects to store update history
+
+    @Prop({ type: [{ type: Types.ObjectId, ref: 'RovSkill' }], default: [] })
+    items: RovItem[];
+    
 }
 
 

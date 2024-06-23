@@ -15,6 +15,12 @@ import { RovArrangeModule } from './rov-arrange/rov-arrange.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { RovCatagorieModule } from './rov-catagorie/rov-catagorie.module';
+import { RovItemCatagorieModule } from './rov-item-catagorie/rov-item-catagorie.module';
+import { RovNewsModule } from './rov-news/rov-news.module';
+import { RovHeroTopModule } from './rov-hero-top/rov-hero-top.module';
+import { RovHeroTableModule } from './rov-hero-table/rov-hero-table.module';
+import { RovNewCatagorieModule } from './rov-new-catagorie/rov-new-catagorie.module';
+import { RovNewContentModule } from './rov-new-content/rov-new-content.module';
 
 
 @Module({
@@ -22,7 +28,7 @@ import { RovCatagorieModule } from './rov-catagorie/rov-catagorie.module';
     ConfigModule.forRoot({
       envFilePath:".env",
       isGlobal: true,
-    }),RovHeroModule, RovItemModule, RovRuneModule, UserModule, PostModule, RovSeasonModule, RovGloriousModule, RovRankModule, RovSpellModule, RovMedModule, RovArrangeModule, RovCatagorieModule],
+    }),RovHeroModule, RovItemModule, RovRuneModule, UserModule, PostModule, RovSeasonModule, RovGloriousModule, RovRankModule, RovSpellModule, RovMedModule, RovArrangeModule, RovCatagorieModule, RovItemCatagorieModule, RovNewsModule, RovHeroTopModule, RovHeroTableModule, RovNewCatagorieModule, RovNewContentModule],
   controllers: [AppController],
   providers: [AppService],
 })

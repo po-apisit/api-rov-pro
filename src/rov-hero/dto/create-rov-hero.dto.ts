@@ -4,6 +4,10 @@ import { CreateRovSkillDto } from "./create-rov-skill.dto";
 
 export class CreateRovHeroDto {
     
+    @IsMongoId()
+    @IsOptional()
+    _id?:string;
+
     @IsString()
     @IsNotEmpty()
     readonly name_hero: string;
@@ -20,5 +24,6 @@ export class CreateRovHeroDto {
     @IsNotEmpty()
     readonly story_hero: string;
 
-    skills:CreateRovSkillDto[]
+    @IsOptional()
+    skills?:CreateRovSkillDto[]
 }

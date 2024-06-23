@@ -36,8 +36,14 @@ export class RovHeroController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rovHeroService.remove(id);
+  async remove(@Param('id') id: string) {
+    const hero = await this.rovHeroService.remove(id);
+    try {
+      await unlink(hero.image_hero); // ลบไฟล์เก่า
+    } catch (error) {
+      console.error(`Error deleting file: ${hero.image_hero}`, error);
+    }
+    return hero;
   }
 
   @Post('upload/:id')
@@ -69,10 +75,12 @@ export class RovHeroController {
       }
       response.image_hero = `/public/rov/hero/${file.filename}`;
 
-      // const _newHero:UpdateRovHeroDto = {
-      //   ...response
-      // }
-      //await this.rovHeroService.updateone(id, response);
+      const _newHero:UpdateRovHeroDto = {
+        name_aliases: response.name_aliases,
+        description_hero: response.description_hero,
+        image_hero: response.image_hero,
+      }
+      await this.rovHeroService.updateOne(id, _newHero);
       return response;
     }
     throw new NotFoundException("Invalid Id");
